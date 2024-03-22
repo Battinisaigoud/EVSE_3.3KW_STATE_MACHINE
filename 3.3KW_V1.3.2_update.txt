@@ -1,0 +1,129 @@
+Firmware version------EVSE_3.3KW_S_V1.3.1
+Hardware version------Supports VL_1.4/VL_1.3
+Supported Displays DWIN/LCD 20x4
+
+
+URI is http://34.100.138.28/evse_bm_3_3kw_ota.php
+
+VERSION : EVSE_3.3KW_S_V1.3.1
+
+
+Updated date: 29-02-2024
+Updated by: Sai goud battini
+
+1.finite state machine implemented 
+2.LCD driver Implemented
+3.event based wifi driver implemented
+
+
+Updated date: 30-01-2024
+Updated by: Sai goud battini
+1. Resetting metervalue reading in stop transaction if the value exceeds upper threshold value(19900000)
+
+
+Updated date: 27-01-2024
+Updated by: Sai goud battini
+1.4G OTA WORKING
+2.earth disconnect issue fixed 
+3.In 4G session resume fixed
+4.commented esp.restart for every 12 hours
+
+Updated date: 03-01-2023
+Updated by: Sai goud battini
+
+1.connectivity isuue fixed
+2.power recycle isuue fixed
+3.BLINKY ORANGE implemented for OTA update
+
+Updated date: 19-12-2023
+Updated by: Sai goud battini
+1.Implemented comman LED indications
+2.Implemented fota triger based OTA 
+
+Updated date: 04-11-2023
+Updated by: Sai goud battini
+
+1.Implementated of bluetooth configaration parameters and parameters functions.
+2.Bluetooth configaration parameters packet {"lowcurcnt":"200","mincurr":"0.25","ongoingtxpor":0,"otaenable":0,"onlineoffline":0}
+3.Session resume on power recycle should be configurable.
+a)If ongoingtxpor is enabled(1) , the charger should resume the ongoing session after power recycle.
+b)If ongoingtxpor is disabled(0), the charger should send stop txn request for ongoing session with power loss as reason after power recycle with time stamp
+4.4G/WiFi OTA configuration
+a)If otaenable  is enabled(1), the charger will check for the OTA after power recycle.
+b)If otaenable  is disabled(0), the charger should not check for the OTA after power recycle
+5.Online-Offline Functionality configurable
+a)If onlineoffline is  enabled(1), the charger should go to offline mode when the internet is not available and should be able to start the sessions when the RFID is tapped.
+b)If onlineoffline  is disabled(0) , the char ger will be checking for the connectivity and remains in internet checking loop when the internet is not available. Offline functionality  should not work in this mode.
+6.Default low current count 120 and mincur 0.25
+
+
+
+
+
+Updated date: 20-10-2023
+Updated by: Sai goud battini
+
+1.Implemented common code for hardware version 1.3 and 1.4
+2.In slave two pins are enable EMGY_1 39 and EMGY_2 2
+3.Irrespective of hardware version 1.3 are 1.4 emergency is working
+
+
+
+
+
+
+
+Updated date: 22-07-2023
+Updated by: Sai goud battini
+
+
+1. Update Source code compilation Environment upgraded from Arduino ESp32 1.0.6 to 2.0.6.
+2. Modified the urlparser function.
+3. Added Wifi OTA and 4G OTA to source code.
+4. Added Error handler OTA Through wifi
+5.Changed Macro BLINKYWHITE_EINS  11 to 15
+6.Changed macro BLINKYWHITE  11 to 15
+
+
+
+
+
+
+
+Updated date: 06-04-2023
+Updated by: Krishna Marri
+
+1. Complete core profile, reserve now and ALPR integrated!
+2. Fixed Session Resume after power recycle with the same transaction ID
+3. Low Current count 3min
+4. Low Current Threshold 100 milli amps
+5. changed Master serial port baudrate from 9600 to 14400.
+6. while EVSE device is charging:
+    1. Connectivity is changed from Online to offline then, meter values not pushed in the OCCP out-going Message Queues.
+    2. if Device restart, it will check onging transaction is exist or not, if yes then resume it, with Relay ON, green and white led blink will indicated.
+    3. if Internet off and on, then it will reconnect the internet and update ocpp message to CMS and update valid meter values to CMS.
+   
+7. Added GSM based functionality. 
+8. removed the Wifi on-Event for checking wifi-level Connectivity. 
+9. Starts device charging even-though the start transaction response is ConcurrentTx.
+    
+ 
+
+
+
+=======================================
+Device Configurations
+Debug&Programming UART0(115200)
+UART2 - 4G(SIMCOM Module)
+LED(GPIO)
+Realy(GPIO)
+RFID(SPI)
+Temperature sensor()
+Display:LCD 20x4(I2C) and DWIN(UART)
+Energy Meter(SPI)
+Emergency(GPIO)
+GFCI(GPIO)
+SoftSerial(Connected to slave)
+
+
+
